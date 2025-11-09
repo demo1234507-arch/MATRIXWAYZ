@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, ComponentType } from 'react';
+import React, { useState } from 'react';
 import { ShoppingCart, Home, Briefcase, RefreshCw, HeartPulse, GraduationCap, Truck, Zap, Tractor, Car, Film, Phone, Factory, Plane, Shield } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // --- Type Definitions ---
+// Use React.ComponentType with SVG props so strokeWidth is allowed
 interface ServiceDetail {
   name: string;
   value: string;
@@ -12,7 +13,8 @@ interface ServiceDetail {
 }
 
 interface CardData {
-  icon: ComponentType<{ className?: string }>;
+  // allow all standard SVG props plus optional strokeWidth
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement> & { strokeWidth?: number }>;
   title: string;
   description: string;
   details?: ServiceDetail[];
@@ -21,9 +23,10 @@ interface CardData {
 interface IndustryData {
   id: string;
   label: string;
-  icon: ComponentType<{ className?: string }>;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement> & { strokeWidth?: number }>;
   cards: CardData[];
 }
+
 
 // --- Data ---
 const industriesData: IndustryData[] = [
@@ -375,7 +378,7 @@ export default function Industries() {
   const [activeTab, setActiveTab] = useState(industriesData[0].id);
 
   const activeIndustry = industriesData.find((industry) => industry.id === activeTab);
-
+  
   return (
     <section id="industries" className="relative overflow-hidden bg-background py-[120px]">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_10%_100%,rgba(255,140,58,0.1),transparent)]" />
@@ -400,24 +403,30 @@ export default function Industries() {
         </div>
 
         <div className="mt-16 flex flex-wrap justify-center gap-x-6 gap-y-4 md:gap-x-8 lg:gap-x-10">
-          {industriesData.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className="group relative flex flex-col items-center gap-2 px-2 py-1 transition-colors"
-            >
-              <tab.icon className={`size-6 transition-colors ${activeTab === tab.id ? 'text-white' : 'text-muted-foreground group-hover:text-white'}`} strokeWidth={1.5}/>
-              <span className={`text-sm font-medium transition-colors ${activeTab === tab.id ? 'text-white' : 'text-muted-foreground group-hover:text-white'}`}>
-                {tab.label}
-              </span>
-              {activeTab === tab.id && (
-                <motion.div
-                  className="absolute -bottom-2 h-[2px] w-full bg-primary"
-                  layoutId="underline"
+          {industriesData.map((tab) => {
+            const TabIcon = tab.icon;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className="group relative flex flex-col items-center gap-2 px-2 py-1 transition-colors"
+              >
+                <TabIcon
+                  className={`size-6 transition-colors ${activeTab === tab.id ? 'text-white' : 'text-muted-foreground group-hover:text-white'}`}
+                  strokeWidth={1.5}
                 />
-              )}
-            </button>
-          ))}
+                <span className={`text-sm font-medium transition-colors ${activeTab === tab.id ? 'text-white' : 'text-muted-foreground group-hover:text-white'}`}>
+                  {tab.label}
+                </span>
+                {activeTab === tab.id && (
+                  <motion.div
+                    className="absolute -bottom-2 h-[2px] w-full bg-primary"
+                    layoutId="underline"
+                  />
+                )}
+              </button>
+            );
+          })}
         </div>
 
         <div className="mt-16">
@@ -430,25 +439,28 @@ export default function Industries() {
               transition={{ duration: 0.3 }}
               className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
             >
-              {activeIndustry?.cards.map((card, index) => (
-                <div key={index} className="rounded-3xl border border-white/5 bg-[rgba(20,20,20,0.5)] p-8 backdrop-blur-lg hover:border-primary/30 transition-all duration-300">
-                  <div className="inline-block rounded-full bg-primary/10 p-3">
-                    <card.icon className="size-7 text-primary" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="mt-6 text-2xl font-semibold text-white">{card.title}</h3>
-                  <p className="mt-2 text-base text-muted-foreground">{card.description}</p>
-                  {card.details && (
-                    <div className="mt-6 space-y-3">
-                      {card.details.map((detail, idx) => (
-                        <div key={idx} className="border-t border-white/5 pt-3">
-                          <p className="text-sm font-medium text-primary">{detail.name}</p>
-                          <p className="mt-1 text-sm text-muted-foreground">{detail.value}</p>
-                        </div>
-                      ))}
+              {activeIndustry?.cards.map((card, index) => {
+                const CardIcon = card.icon;
+                return (
+                  <div key={index} className="rounded-3xl border border-white/5 bg-[rgba(20,20,20,0.5)] p-8 backdrop-blur-lg hover:border-primary/30 transition-all duration-300">
+                    <div className="inline-block rounded-full bg-primary/10 p-3">
+                      <CardIcon className="size-7 text-primary" strokeWidth={1.5} />
                     </div>
-                  )}
-                </div>
-              ))}
+                    <h3 className="mt-6 text-2xl font-semibold text-white">{card.title}</h3>
+                    <p className="mt-2 text-base text-muted-foreground">{card.description}</p>
+                    {card.details && (
+                      <div className="mt-6 space-y-3">
+                        {card.details.map((detail, idx) => (
+                          <div key={idx} className="border-t border-white/5 pt-3">
+                            <p className="text-sm font-medium text-primary">{detail.name}</p>
+                            <p className="mt-1 text-sm text-muted-foreground">{detail.value}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </motion.div>
           </AnimatePresence>
         </div>
