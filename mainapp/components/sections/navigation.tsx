@@ -26,9 +26,16 @@ const Navigation = () => {
           {/* Desktop & Mobile Top Bar */}
           <div className="flex items-center justify-between bg-[rgba(20,20,20,0.35)] backdrop-blur-md rounded-[10px] py-[15px] px-5">
             <Link href="/" className="flex items-center gap-2.5 z-10">
-              
-              <span className="text-white text-base font-normal">MATRIXWAYZ</span>
-            </Link>
+  <Image
+    src="/matrixbg.png"
+    alt="Matrixwayz Logo"
+    width={26}
+    height={26}
+    className="object-contain"
+  />
+  <span className="text-white text-base font-normal">MATRIXWAYZ</span>
+</Link>
+
 
             {/* Desktop Menu */}
             <nav className="hidden lg:flex items-center gap-8">
