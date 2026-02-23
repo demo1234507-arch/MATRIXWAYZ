@@ -48,14 +48,7 @@ const LinkColumn = ({ title, links, className }: LinkColumnProps) => (
 const Footer = () => {
   return (
     <footer className="bg-[#080808] relative pt-[120px]">
-      <Image
-        src="https://framerusercontent.com/images/lYNoiJ02uC2l7f259y3Y8s9a0.png"
-        alt="Background starburst effect"
-        width={820}
-        height={295.7}
-        className="absolute top-[-94px] left-1/2 -translate-x-1/2 w-[820px] h-auto opacity-50 pointer-events-none"
-        unoptimized
-      />
+     
       <div className="container mx-auto relative">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-10 lg:gap-y-0 pb-[80px]">
           <div className="flex flex-col gap-6 lg:pr-10">
@@ -84,7 +77,7 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 py-[40px] border-t border-border">
-          <p className="text-base text-muted">© 2025, MATRIXWAYZ</p>
+          <p className="text-base text-muted">© 2026, MATRIXWAYZ</p>
           <p className="text-base text-muted">Innovating with AI-Powered Solutions</p>
         </div>
       </div>

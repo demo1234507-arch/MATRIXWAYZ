@@ -6,13 +6,9 @@ import Image from 'next/image';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
 const navLinks = [
-  { href: '#about', label: 'About' },
   { href: '#process', label: 'Process' },
   { href: '#industries', label: 'Industries' },
   { href: '#pricing', label: 'Pricing' },
-  { href: '#team', label: 'Team' },
-  { href: '#contact', label: 'Contact' },
-  { href: '#faq', label: 'FAQ' },
 ];
 
 const Navigation = () => {

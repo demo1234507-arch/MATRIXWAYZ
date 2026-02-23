@@ -6,7 +6,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ChevronDown } from "lucide-react";
 
 const faqData = [
   {
@@ -40,37 +39,42 @@ const FAQSection = () => {
   return (
     <section id="faq" className="bg-background py-[120px]">
       <div className="mx-auto flex max-w-[800px] flex-col items-start gap-[30px] px-6 sm:px-10">
+        
         <div className="flex items-center justify-center rounded-full border border-primary bg-accent py-2 px-4">
           <p className="text-sm font-medium text-accent-foreground">FAQ</p>
         </div>
+
         <div className="flex max-w-[580px] flex-col gap-5">
           <h2 className="text-5xl font-bold tracking-[-0.02em] text-text-primary">
             FAQ
           </h2>
           <p className="text-base text-text-secondary">
             We've answered the questions we're asked most often about MATRIXWAYZ and our AI solutions.
-            Can't find what you're looking for? Feel free to reach out to us
-            through the contact form!
+            Can't find what you're looking for? Feel free to reach out through the contact form!
           </p>
         </div>
 
         <Accordion type="single" collapsible className="w-full">
-          {faqData.map((item, index) => (
+          {faqData.map((item) => (
             <AccordionItem
               key={item.value}
               value={item.value}
               className="border-b border-border first:border-t"
             >
-              <AccordionTrigger className="group flex w-full items-center justify-between py-[30px] text-left text-xl font-medium text-text-primary transition-colors hover:text-primary hover:no-underline">
+              <AccordionTrigger className="py-[30px] text-left text-xl font-medium text-text-primary hover:text-primary">
                 {item.question}
-                <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 group-data-[state=open]:rotate-180" />
               </AccordionTrigger>
-              <AccordionContent className="overflow-hidden pb-[30px] data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                <p className="text-base text-text-secondary">{item.answer}</p>
+
+              <AccordionContent className="pb-[30px]">
+                <p className="text-base text-text-secondary">
+                  {item.answer}
+                </p>
               </AccordionContent>
+
             </AccordionItem>
           ))}
         </Accordion>
+
       </div>
     </section>
   );
