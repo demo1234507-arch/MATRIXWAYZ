@@ -45,47 +45,7 @@ const ContactSection = () => {
                         </a>
                     </div>
 
-                    <form className="w-full text-left" onSubmit={handleSubmit}>
-                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                            <input
-                                type="text"
-                                placeholder="First Name"
-                                className="h-14 w-full rounded-[12px] border border-input-border bg-input px-4 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                                aria-label="First Name"
-                            />
-                            <input
-                                type="text"
-                                placeholder="Last Name"
-                                className="h-14 w-full rounded-[12px] border border-input-border bg-input px-4 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                                aria-label="Last Name"
-                            />
-                            <input
-                                type="email"
-                                placeholder="Email"
-                                className="h-14 w-full rounded-[12px] border border-input-border bg-input px-4 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                                aria-label="Email"
-                             />
-                            <input
-                                type="tel"
-                                placeholder="Phone"
-                                className="h-14 w-full rounded-[12px] border border-input-border bg-input px-4 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                                aria-label="Phone"
-                            />
-                            <textarea
-                                placeholder="Message"
-                                className="min-h-[160px] w-full resize-none rounded-[12px] border border-input-border bg-input px-4 py-4 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring md:col-span-2"
-                                aria-label="Message"
-                            />
-                        </div>
-                        <div className="mt-8">
-                            <button
-                                type="submit"
-                                className="inline-flex items-center justify-center whitespace-nowrap rounded-[12px] text-base font-medium transition-colors border border-primary text-white hover:bg-primary/10 py-4 px-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                            >
-                                Submit
-                            </button>
-                        </div>
-                    </form>
+                    
                 </div>
             </div>
         </section>
